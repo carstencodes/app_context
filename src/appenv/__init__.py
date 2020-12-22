@@ -224,6 +224,8 @@ def _get_package_info() -> Iterable[PackageInformation]:
     Yields:
         Iterator[Iterable[PackageInformation]]: A current package.
     """
+    # This is iterable
+    # pylint: disable=E1133
     for package in __working_set():
         yield PackageInformation(
             package.key,
