@@ -1,8 +1,8 @@
 #
 # Copyright (c) 2020 Carsten Igel.
 #
-# This file is part of appenv
-# (see https://github.com/carstencodes/appenv).
+# This file is part of app_context
+# (see https://github.com/carstencodes/app_context).
 #
 # License: 3-clause BSD, see https://opensource.org/licenses/BSD-3-Clause
 #

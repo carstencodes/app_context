@@ -1,6 +1,6 @@
-# appenv
+# app_context
 
-A small library giving you information about the environment your python application is running in.
+A small library giving you information about the context your python application is running in.
 
 It contains the application entry point, i.e. the starting script, information about the current python interpreter and the packages that can be consumed in the current environment.
 
