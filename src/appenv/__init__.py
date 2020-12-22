@@ -368,15 +368,15 @@ def _get_windows_info() -> Dict[str, str]:
     Returns:
         Dict[str, str]: A key-value list of Windows related information.
     """
-    release, version, service_pack, ms_proc = __my_platform.win32_edition()
-    is_iot = str(__my_platform.win32_is_iot())
+    #release, version, service_pack, ms_proc = __my_platform.win32_edition()
+    #is_iot = str(__my_platform.win32_is_iot())
     edition = __my_platform.win32_ver()
     return dict(
-        release=release,
-        version=version,
-        service_pack=service_pack,
-        processor=ms_proc,
-        is_win_iot=is_iot,
+    #    release=release,
+    #    version=version,
+    #    service_pack=service_pack,
+    #    processor=ms_proc,
+    #    is_win_iot=is_iot,
         edition=edition,
     )
 
