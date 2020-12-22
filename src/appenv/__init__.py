@@ -14,7 +14,7 @@ The data is provided as python dataclass.
 """
 
 from dataclasses import dataclass, field
-from typing import Iterable, Dict, FrozenSet, MappingView
+from typing import Iterable, Dict, FrozenSet, Mapping
 import sys
 import os
 import platform
@@ -145,7 +145,7 @@ class RunTimeInformation:
     language: LanguageInformation = field()
     """Provides information about the programming language interpreter.
     """
-    system_properties: MappingView[str, str] = field()
+    system_properties: Mapping[str, str] = field()
     """Provides additional information about the system.
        Varies from operating system to operating system.
     """
@@ -224,7 +224,7 @@ def _get_package_info() -> Iterable[PackageInformation]:
     Yields:
         Iterator[Iterable[PackageInformation]]: A current package.
     """
-    for package in __working_set().entries():
+    for package in __working_set():
         yield PackageInformation(
             package.key,
             package.version,
