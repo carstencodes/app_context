@@ -1,10 +1,10 @@
-appenv package
+app_context package
 ==============
 
 Module contents
 ---------------
 
-.. automodule:: appenv
+.. automodule:: app_context
    :members:
    :undoc-members:
    :show-inheritance:

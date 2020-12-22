@@ -3,8 +3,8 @@
 #
 # Copyright (c) 2020 Carsten Igel.
 #
-# This file is part of appenv
-# (see https://github.com/carstencodes/appenv).
+# This file is part of app_context
+# (see https://github.com/carstencodes/app_context).
 #
 # License: 3-clause BSD, see https://opensource.org/licenses/BSD-3-Clause
 #
@@ -18,7 +18,7 @@ with open("README.md", "r") as read_me_file:
     long_description = read_me_file.read()
 
 setup(
-    name="appenv",
+    name="app_context",
     version=__VERSION__,
     license="BSD-3-Clause",
     author="Carsten Igel",
@@ -28,7 +28,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(where="src"),
-    url="https://github.com/carstencodes/appenv",
+    url="https://github.com/carstencodes/app_context",
     install_requires=[],
     package_dir={"": "src"},
     keywords="application, platform, environment, development",
