@@ -317,7 +317,7 @@ def _get_system_extras() -> Dict[str, str]:
     """
     result: dict = dict(system_info_for=__my_platform.system())
     if __my_platform.system() == "Linux":
-        dict.update(_get_linux_info())
+        result.update(_get_linux_info())
     elif __my_platform.system() == "Darwin":
         result.update(_get_mac_info())
     elif __my_platform.system() == "Windows":
