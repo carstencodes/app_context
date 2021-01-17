@@ -13,13 +13,13 @@ the run-time packages that are currently used in the python environment.
 The data is provided as python dataclass.
 """
 
-from dataclasses import dataclass, field
-from typing import Iterable, Dict, FrozenSet, Mapping
+from typing import Iterable, Dict, FrozenSet, Mapping, NamedTuple, Union
 import sys
 import os
 import platform
 
 import pkg_resources
+from packaging.version import Version
 
 __all__ = [
     "create_application_environment",
@@ -62,131 +62,122 @@ def __get_entry_point() -> str:
     return sys.argv[0]
 
 
-@dataclass(frozen=True)
-class SystemInformation:
+class SystemInformation(NamedTuple):
     """Provides information about the current system.
     """
-    name: str = field()
+    name: str = ""
     """The name of the operating system.
     """
-    version: str = field()
+    version: Union[Version, str] = "None"
     """The version of the operating system.
     """
-    architecture: str = field()
+    architecture: str = ""
     """The system architecture.
     """
-    processor: str = field()
+    processor: str = ""
     """The name of the processor.
     """
-    host_name: str = field()
+    host_name: str = ""
     """The name of the current host.
     """
-    instruction_set: str = field()
+    instruction_set: str = ""
     """The name of the instruction set.
     """
 
-
-@dataclass(frozen=True)
-class BuildInformation:
+class BuildInformation(NamedTuple):
     """Provides information about the python build.
     """
-    compiler: str = field()
+    compiler: str = ""
     """The name of the compiler used.
     """
-    built_on: str = field()
+    built_on: str = ""
     """The date the build was performed.
     """
-    build_number: str = field()
+    build_number: str = ""
     """The incremental number of the build.
     """
 
 
-@dataclass(frozen=True)
-class SourceInformation:
+class SourceInformation(NamedTuple):
     """Provides information about the source
        code python has been build from.
     """
-    revision: str = field()
+    revision: str = ""
     """The source code revision, i.e. the git commit.
     """
-    branch: str = field()
+    branch: str = ""
     """The git branch the executable was build from.
     """
 
 
-@dataclass(frozen=True)
-class LanguageInformation:
+class LanguageInformation(NamedTuple):
     """Provides information about the language interpreter.
     """
-    name: str = field()
+    name: str = ""
     """The name of the interpreter.
     """
-    version: str = field()
+    version: Union[str, Version] = ""
     """The version of the interpreter.
     """
-    implementation: str = field()
+    implementation: str = ""
     """The implementation of the interpreter.
     """
-    revision: SourceInformation = field()
+    revision: SourceInformation = SourceInformation()
     """The revision the interpreter was build from.
     """
-    build: BuildInformation = field()
+    build: BuildInformation = BuildInformation()
     """The information about the build that produced the interpreter.
     """
 
-
-@dataclass(frozen=True)
-class RunTimeInformation:
+class RunTimeInformation(NamedTuple):
     """Provides information about the run-time of the current script.
     """
-    system: SystemInformation = field()
+    system: SystemInformation = SystemInformation()
     """Provides information about the system.
     """
-    language: LanguageInformation = field()
+    language: LanguageInformation = LanguageInformation()
     """Provides information about the programming language interpreter.
     """
-    system_properties: Mapping[str, str] = field()
+    system_properties: Mapping[str, str] = {}
     """Provides additional information about the system.
        Varies from operating system to operating system.
     """
 
 
-@dataclass(frozen=True)
-class PackageInformation:
+class PackageInformation(NamedTuple):
     """Provides information about a certain package that
        can be consumed at run-time.
     """
-    name: str = field()
+    name: str = ""
     """The name of the package.
     """
-    version: str = field()
+    version: Union[str, Version] = ""
     """The version of the package.
     """
-    location: str = field()
+    location: str = ""
     """The installation location of the package.
     """
-    extras: FrozenSet[str] = field()
+    extras: FrozenSet[str] = {}
     """The extras installed for the package.
     """
 
 
-@dataclass(frozen=True)
-class ApplicationEnvironment:
+class ApplicationEnvironment(NamedTuple):
     """The environment of the current application.
     """
-    name: str = field()
+    name: str = ""
     """The name of the current application, i.e. name of the entry file.
     """
-    entry_point: str = field()
+    entry_point: str = ""
     """The entry point of the current application, i.e. the start package.
     """
-    working_dir: str = field()
+    working_dir: str = ""
     """The working directory of the application.
     """
-    run_time: RunTimeInformation = field()
+    run_time: RunTimeInformation = RunTimeInformation()
     """Information about the script run-time.
     """
-    packages: FrozenSet[PackageInformation] = field()
+    packages: FrozenSet[PackageInformation] = {}
     """Packages that can be consumed at run-time.
     """
 
